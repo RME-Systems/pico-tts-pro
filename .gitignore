@@ -1,0 +1,55 @@
+# Built binaries and packages
+*.apk
+*.aar
+*.aab
+*.dex
+*.class
+*.idsig
+
+# Build directories and generated files
+build/
+**/build/
+bin/
+gen/
+out/
+captures/
+**/captures/
+
+# Gradle files and caches
+.gradle/
+**/.gradle/
+
+# NDK / C++ build outputs
+.externalNativeBuild/
+**/.externalNativeBuild/
+.cxx/
+**/.cxx/
+obj/
+**/obj/
+
+# Local SDK configuration
+local.properties
+**/local.properties
+
+# Keystores
+*.jks
+*.keystore
+
+# Android Studio / IntelliJ IDEA user-specific files
+*.iml
+**/*.iml
+.idea/workspace.xml
+.idea/caches/
+.idea/libraries/
+.idea/modules.xml
+.idea/navEditor.xml
+.idea/assetWizardSettings.xml
+.idea/shelf/
+**/.idea/workspace.xml
+**/.idea/caches/
+**/.idea/shelf/
+
+# Logs and OS files
+*.log
+.DS_Store
+Thumbs.db

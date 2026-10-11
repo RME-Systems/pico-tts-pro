@@ -1,0 +1,93 @@
+<resources>
+    <string name="app_name">Pico TTS Pro</string>
+
+    <!-- Categories -->
+    <string name="category_voice">Voice &amp; Audio</string>
+    <string name="category_force_params">Speech Control Overrides</string>
+    <string name="category_emojis_text">Emoji &amp; Text Processing</string>
+    <string name="category_dictionary">User Dictionary</string>
+    <string name="category_system">System &amp; Fallback</string>
+
+    <!-- Voice Settings -->
+    <string name="pref_default_voice">Default Voice</string>
+    <string name="pref_default_voice_summary">Default voice when not specified by the app</string>
+
+    <!-- Force Speed / Rate -->
+    <string name="pref_force_rate">Force speech rate</string>
+    <string name="pref_force_rate_summary">Ignore app/system rate and strictly use the rate configured below</string>
+    <string name="pref_forced_rate_value">Forced speech rate</string>
+
+    <!-- Force Pitch -->
+    <string name="pref_force_pitch">Force pitch</string>
+    <string name="pref_force_pitch_summary">Ignore app/system pitch and strictly use the pitch configured below</string>
+    <string name="pref_forced_pitch_value">Forced pitch</string>
+
+    <!-- Force Volume -->
+    <string name="pref_force_volume">Force volume</string>
+    <string name="pref_force_volume_summary">Keep speech volume at the fixed level configured below</string>
+    <string name="pref_forced_volume_value">Forced volume</string>
+
+    <!-- Emoji Processing -->
+    <string name="pref_read_emojis">Read emojis</string>
+    <string name="pref_read_emojis_summary">Translate emojis into spoken words</string>
+    <string name="pref_emoji_language">Emoji language</string>
+    <string name="pref_emoji_language_summary">Language used to pronounce emojis</string>
+
+    <!-- Punctuation -->
+    <string name="pref_punctuation_level">Punctuation level</string>
+    <string name="pref_punctuation_level_summary">Choose which punctuation marks are spoken</string>
+
+    <!-- User Dictionary -->
+    <string name="pref_manage_dictionary">Manage dictionary</string>
+    <string name="pref_manage_dictionary_summary">Add custom word pronunciation rules</string>
+
+    <!-- System -->
+    <string name="pref_open_tts_settings">Android TTS Settings</string>
+    <string name="pref_open_tts_settings_summary">Open system Text-to-Speech settings</string>
+    <string name="pref_fallback_lang">Fallback Language</string>
+    <string name="pref_fallback_lang_summary">Language to use when requested locale is unsupported</string>
+
+    <!-- Punctuation entries -->
+    <string-array name="punctuation_entries">
+        <item>None</item>
+        <item>Some</item>
+        <item>Most</item>
+        <item>All</item>
+    </string-array>
+    <string-array name="punctuation_values">
+        <item>none</item>
+        <item>some</item>
+        <item>most</item>
+        <item>all</item>
+    </string-array>
+
+    <!-- Emoji language entries -->
+    <string-array name="emoji_lang_entries">
+        <item>Match Voice Language</item>
+        <item>Spanish</item>
+        <item>English</item>
+    </string-array>
+    <string-array name="emoji_lang_values">
+        <item>auto</item>
+        <item>es</item>
+        <item>en</item>
+    </string-array>
+
+    <!-- Voice entries -->
+    <string-array name="voice_entries">
+        <item>Spanish (Spain)</item>
+        <item>English (United States)</item>
+        <item>English (United Kingdom)</item>
+        <item>French (France)</item>
+        <item>German (Germany)</item>
+        <item>Italian (Italy)</item>
+    </string-array>
+    <string-array name="voice_values">
+        <item>spa-ESP</item>
+        <item>eng-USA</item>
+        <item>eng-GBR</item>
+        <item>fra-FRA</item>
+        <item>deu-DEU</item>
+        <item>ita-ITA</item>
+    </string-array>
+</resources>

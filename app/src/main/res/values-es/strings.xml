@@ -1,0 +1,74 @@
+<resources>
+    <string name="app_name">Pico TTS Pro</string>
+
+    <!-- Categorías -->
+    <string name="category_voice">Voz y Audio</string>
+    <string name="category_force_params">Anulación y Control de Voz</string>
+    <string name="category_emojis_text">Emojis y Procesamiento de Texto</string>
+    <string name="category_dictionary">Diccionario de Usuario</string>
+    <string name="category_system">Sistema y Respaldo</string>
+
+    <!-- Ajustes de Voz -->
+    <string name="pref_default_voice">Voz predeterminada</string>
+    <string name="pref_default_voice_summary">Voz a utilizar cuando la aplicación no especifique una</string>
+
+    <!-- Forzar Velocidad -->
+    <string name="pref_force_rate">Forzar velocidad</string>
+    <string name="pref_force_rate_summary">Ignorar la velocidad del sistema y las aplicaciones, usando siempre la configurada aquí</string>
+    <string name="pref_forced_rate_value">Velocidad forzada</string>
+
+    <!-- Forzar Tono -->
+    <string name="pref_force_pitch">Forzar tono</string>
+    <string name="pref_force_pitch_summary">Ignorar el tono del sistema y las aplicaciones, usando siempre el configurado aquí</string>
+    <string name="pref_forced_pitch_value">Tono forzado</string>
+
+    <!-- Forzar Volumen -->
+    <string name="pref_force_volume">Forzar volumen</string>
+    <string name="pref_force_volume_summary">Mantener el volumen de la voz en un nivel fijo configurado aquí</string>
+    <string name="pref_forced_volume_value">Volumen forzado</string>
+
+    <!-- Emojis -->
+    <string name="pref_read_emojis">Leer emojis</string>
+    <string name="pref_read_emojis_summary">Traducir emojis a palabras habladas</string>
+    <string name="pref_emoji_language">Idioma de los emojis</string>
+    <string name="pref_emoji_language_summary">Idioma utilizado para pronunciar los emojis</string>
+
+    <!-- Puntuación -->
+    <string name="pref_punctuation_level">Nivel de puntuación</string>
+    <string name="pref_punctuation_level_summary">Elegir qué signos de puntuación se verbalizan</string>
+
+    <!-- Diccionario de Usuario -->
+    <string name="pref_manage_dictionary">Administrar diccionario</string>
+    <string name="pref_manage_dictionary_summary">Añadir reglas de pronunciación personalizadas</string>
+
+    <!-- Sistema -->
+    <string name="pref_open_tts_settings">Ajustes de Texto a Voz de Android</string>
+    <string name="pref_open_tts_settings_summary">Abrir los ajustes del sintetizador del sistema</string>
+    <string name="pref_fallback_lang">Idioma de respaldo</string>
+    <string name="pref_fallback_lang_summary">Idioma a usar cuando el solicitado no esté disponible</string>
+
+    <!-- Entradas de puntuación -->
+    <string-array name="punctuation_entries">
+        <item>Ninguna</item>
+        <item>Alguna</item>
+        <item>La mayoría</item>
+        <item>Toda</item>
+    </string-array>
+
+    <!-- Entradas de idioma de emojis -->
+    <string-array name="emoji_lang_entries">
+        <item>Igual al idioma de la voz</item>
+        <item>Español</item>
+        <item>Inglés</item>
+    </string-array>
+
+    <!-- Entradas de voz -->
+    <string-array name="voice_entries">
+        <item>Español (España)</item>
+        <item>Inglés (Estados Unidos)</item>
+        <item>Inglés (Reino Unido)</item>
+        <item>Francés (Francia)</item>
+        <item>Alemán (Alemania)</item>
+        <item>Italiano (Italia)</item>
+    </string-array>
+</resources>

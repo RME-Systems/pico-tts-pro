@@ -1,0 +1,97 @@
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        app:title="@string/category_force_params"
+        app:iconSpaceReserved="false">
+
+        <SwitchPreferenceCompat
+            app:key="force_rate"
+            app:title="@string/pref_force_rate"
+            app:summary="@string/pref_force_rate_summary"
+            app:defaultValue="false" />
+
+        <com.rme.picottspro.SingleChoiceListPreference
+            app:key="forced_rate_value"
+            app:title="@string/pref_forced_rate_value"
+            app:dependency="force_rate"
+            app:defaultValue="50" />
+
+        <SwitchPreferenceCompat
+            app:key="force_pitch"
+            app:title="@string/pref_force_pitch"
+            app:summary="@string/pref_force_pitch_summary"
+            app:defaultValue="false" />
+
+        <com.rme.picottspro.SingleChoiceListPreference
+            app:key="forced_pitch_value"
+            app:title="@string/pref_forced_pitch_value"
+            app:dependency="force_pitch"
+            app:defaultValue="50" />
+
+        <SwitchPreferenceCompat
+            app:key="force_volume"
+            app:title="@string/pref_force_volume"
+            app:summary="@string/pref_force_volume_summary"
+            app:defaultValue="false" />
+
+        <com.rme.picottspro.SingleChoiceListPreference
+            app:key="forced_volume_value"
+            app:title="@string/pref_forced_volume_value"
+            app:dependency="force_volume"
+            app:defaultValue="100" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:title="@string/category_emojis_text"
+        app:iconSpaceReserved="false">
+
+        <SwitchPreferenceCompat
+            app:key="read_emojis"
+            app:title="@string/pref_read_emojis"
+            app:summary="@string/pref_read_emojis_summary"
+            app:defaultValue="true" />
+
+        <ListPreference
+            app:key="emoji_language"
+            app:title="@string/pref_emoji_language"
+            app:summary="%s"
+            app:entries="@array/emoji_lang_entries"
+            app:entryValues="@array/emoji_lang_values"
+            app:defaultValue="auto"
+            app:dependency="read_emojis" />
+
+        <ListPreference
+            app:key="punctuation_level"
+            app:title="@string/pref_punctuation_level"
+            app:summary="%s"
+            app:entries="@array/punctuation_entries"
+            app:entryValues="@array/punctuation_values"
+            app:defaultValue="none" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:title="@string/category_voice"
+        app:iconSpaceReserved="false">
+
+        <ListPreference
+            app:key="default_voice"
+            app:title="@string/pref_default_voice"
+            app:summary="%s"
+            app:entries="@array/voice_entries"
+            app:entryValues="@array/voice_values"
+            app:defaultValue="spa-ESP" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:title="@string/category_system"
+        app:iconSpaceReserved="false">
+
+        <Preference
+            app:key="open_tts_settings"
+            app:title="@string/pref_open_tts_settings"
+            app:summary="@string/pref_open_tts_settings_summary" />
+    </PreferenceCategory>
+
+</PreferenceScreen>
