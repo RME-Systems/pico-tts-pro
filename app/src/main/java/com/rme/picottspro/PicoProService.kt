@@ -17,7 +17,11 @@ class PicoProService : TextToSpeechService() {
         private const val TAG = "PicoProService"
         private val SVOX_LANGPACK_RESOURCE = R.raw.svoxlangpack
 
-        private val SUPPORTED_LANGUAGES = listOf("spa", "eng", "fra", "deu", "ita")
+        private val REQUIRED_VOICE_FILES = arrayOf(
+            "de-DE_gl0_sg.bin", "de-DE_ta.bin", "en-GB_kh0_sg.bin", "en-GB_ta.bin",
+            "en-US_lh0_sg.bin", "en-US_ta.bin", "es-ES_ta.bin", "es-ES_zl0_sg.bin",
+            "fr-FR_nk0_sg.bin", "fr-FR_ta.bin", "it-IT_cm0_sg.bin", "it-IT_ta.bin"
+        )
     }
 
     private var synthProxy: SynthProxy? = null
@@ -72,8 +76,17 @@ class PicoProService : TextToSpeechService() {
 
     private fun ensureVoiceDataInstalled() {
         val dir = filesDir ?: return
-        val testFile = File(dir, "es-ES_ta.bin")
-        if (dir.exists() && testFile.exists() && testFile.length() > 0L) {
+        var allPresent = dir.exists()
+        if (allPresent) {
+            for (fName in REQUIRED_VOICE_FILES) {
+                val f = File(dir, fName)
+                if (!f.exists() || f.length() == 0L) {
+                    allPresent = false
+                    break
+                }
+            }
+        }
+        if (allPresent) {
             return
         }
         dir.mkdirs()
@@ -134,13 +147,19 @@ class PicoProService : TextToSpeechService() {
         return proxy.isLanguageAvailable(lang ?: "", country ?: "", variant ?: "")
     }
 
-    override fun onGetLanguage(): Array<String> {
-        val proxy = synthProxy ?: return arrayOf(currentLanguage, currentCountry, currentVariant)
+    override fun onGetLanguage(): Array<String>? {
+        val proxy = synthProxy ?: return null
         val l = proxy.language
         if (l != null && l.size >= 3 && !l[0].isNullOrEmpty()) {
             return l
         }
-        return arrayOf(currentLanguage, currentCountry, currentVariant)
+        val defaultLoc = Locale.getDefault()
+        val iso3Lang = try { defaultLoc.isO3Language } catch (_: Exception) { "eng" }
+        val iso3Country = try { defaultLoc.isO3Country } catch (_: Exception) { "USA" }
+        if (onIsLanguageAvailable(iso3Lang, iso3Country, "") >= TextToSpeech.LANG_AVAILABLE) {
+            return arrayOf(iso3Lang, iso3Country, "")
+        }
+        return arrayOf("eng", "USA", "")
     }
 
     override fun onLoadLanguage(lang: String?, country: String?, variant: String?): Int {

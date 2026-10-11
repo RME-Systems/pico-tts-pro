@@ -4,7 +4,7 @@
 
     <PreferenceCategory
         app:title="@string/category_force_params"
-        app:iconSpaceReserved="false">
+        app:icon="@drawable/ic_speed">
 
         <SwitchPreferenceCompat
             app:key="force_rate"
@@ -45,7 +45,7 @@
 
     <PreferenceCategory
         app:title="@string/category_emojis_text"
-        app:iconSpaceReserved="false">
+        app:icon="@drawable/ic_emoji">
 
         <SwitchPreferenceCompat
             app:key="read_emojis"
@@ -73,7 +73,7 @@
 
     <PreferenceCategory
         app:title="@string/category_voice"
-        app:iconSpaceReserved="false">
+        app:icon="@drawable/ic_pitch">
 
         <ListPreference
             app:key="default_voice"
@@ -86,7 +86,7 @@
 
     <PreferenceCategory
         app:title="@string/category_system"
-        app:iconSpaceReserved="false">
+        app:icon="@drawable/ic_system">
 
         <Preference
             app:key="open_tts_settings"
