@@ -2,21 +2,20 @@
 
 **Pico TTS Pro** es un motor de Texto a Voz (TTS) moderno, accesible e independiente para Android, basado en las librerías nativas de SVOX Pico TTS pero completamente reconstruido y rediseñado en **Kotlin**.
 
-Diseñado pensando en la comunidad de personas con discapacidad visual y usuarios de lectores de pantalla como **TalkBack**, incorporando opciones avanzadas de anulación de parámetros y lectura de emojis similares a las interfaces clásicas de Eloquence.
+Diseñado pensando en la comunidad de personas con discapacidad visual y usuarios de lectores de pantalla como **TalkBack**, incorporando opciones avanzadas y lectura de emojis.
 
 ---
 
 ## 🚀 Características Principales
 
 - **Lectura completa de Emojis Unicode (CLDR)**:
-  - Base de datos oficial con soporte para más de 3.900 emojis y variantes de tono de piel.
+  - Base de datos oficial con soporte para más de 3.900 emojis.
   - Opciones de idioma para los emojis: automático (según la voz), español o inglés.
-  - Script de actualización automática (`scripts/update_emojis.py`) para incorporar nuevos emojis en futuras especificaciones de Unicode.
 
-- **Anulación de Parámetros de Voz (Estilo Eloquence)**:
-  - **Forzar Velocidad**: Ignora las solicitudes de velocidad de TalkBack o aplicaciones del sistema y mantiene una velocidad fija estricta elegida por el usuario (escala del 1 al 100 con botones de opción).
-  - **Forzar Tono (Pitch)**: Fija el tono de voz deseado (escala del 1 al 100).
-  - **Forzar Volumen**: Mantiene el volumen en un nivel constante (escala del 1 al 100).
+- **Forzar  Parámetros de Voz **:
+  - **Forzar Velocidad**: Ignora las solicitudes de velocidad de TalkBack o aplicaciones del sistema y mantiene una velocidad fija estricta elegida por el usuario.
+  - **Forzar Tono (Pitch)**: Fija el tono de voz deseado.
+  - **Forzar Volumen**: Mantiene el volumen en un nivel constante.
 
 - **Control de Puntuación**:
   - Niveles configurables: *Ninguna*, *Alguna*, *La mayoría*, *Toda*.
@@ -38,7 +37,7 @@ Diseñado pensando en la comunidad de personas con discapacidad visual y usuario
 
 ## 📱 Instalación
 
-1. Descarga el archivo `picoTTS-Pro-v1.0.0.apk` desde la sección de **Releases** en GitHub.
+1. Descarga el archivo `picoTTS-Pro` desde la sección de **Releases** en GitHub.
 2. Instálalo en tu dispositivo Android.
 3. Ve a **Ajustes > Accesibilidad > Salida de texto a voz** (o **Ajustes del Sistema > Idioma e Introducción de texto > Texto a voz**).
 4. Selecciona **Pico TTS Pro** como tu motor preferido.
@@ -62,9 +61,6 @@ cd picoTTS-pro
 ./gradlew assembleRelease
 ```
 
-Para actualizar los diccionarios de emojis a la última versión de Unicode:
-```bash
-python scripts/update_emojis.py
 ```
 
 ---
