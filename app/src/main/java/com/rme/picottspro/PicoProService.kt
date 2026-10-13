@@ -226,7 +226,20 @@ class PicoProService : TextToSpeechService() {
         }
         proxy.setPitch(pitch)
 
-        // 4. Emojis, Numbers, Dictionary and Punctuation Processing
+        // 4. Volume Override (1 to 100 maps to 2 to 500 for Pico; 50 = normal 100%)
+        val picoVolume = if (settings.isForceVolume) {
+            val vol100 = settings.forcedVolumeValue
+            if (vol100 <= 50) {
+                (vol100 * 2).coerceIn(2, 100)
+            } else {
+                (100 + (vol100 - 50) * 8).coerceIn(100, 500)
+            }
+        } else {
+            100
+        }
+        proxy.setVolume(picoVolume)
+
+        // 5. Emojis, Numbers, Dictionary and Punctuation Processing
         val activeLocale = if (targetLang.isNotEmpty()) {
             Locale(targetLang, targetCountry)
         } else {

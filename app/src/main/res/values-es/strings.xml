@@ -45,7 +45,6 @@
     <!-- Ajustes Generales -->
     <string name="pref_read_emojis">Activar leer emojis</string>
     <string name="pref_read_emojis_summary">Verbalizar emojis Unicode y emoticonos de texto</string>
-    <string name="pref_emoji_language">Idioma de los emojis</string>
 
     <string name="pref_process_punctuation">Procesar puntuación</string>
     <string name="pref_process_punctuation_summary">Verbalizar signos de puntuación durante la lectura</string>
@@ -88,17 +87,6 @@
         <item>some</item>
         <item>most</item>
         <item>all</item>
-    </string-array>
-
-    <string-array name="emoji_lang_entries">
-        <item>Igual al idioma de la voz</item>
-        <item>Español</item>
-        <item>Inglés</item>
-    </string-array>
-    <string-array name="emoji_lang_values">
-        <item>auto</item>
-        <item>es</item>
-        <item>en</item>
     </string-array>
 
     <string-array name="number_mode_entries">

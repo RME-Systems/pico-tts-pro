@@ -11,6 +11,7 @@
             app:key="force_rate"
             app:title="@string/pref_force_rate"
             app:summary="@string/pref_force_rate_summary"
+            app:icon="@drawable/ic_speed"
             app:defaultValue="false" />
 
         <com.rme.picottspro.SingleChoiceListPreference
@@ -23,6 +24,7 @@
             app:key="force_pitch"
             app:title="@string/pref_force_pitch"
             app:summary="@string/pref_force_pitch_summary"
+            app:icon="@drawable/ic_pitch"
             app:defaultValue="false" />
 
         <com.rme.picottspro.SingleChoiceListPreference
@@ -35,13 +37,14 @@
             app:key="force_volume"
             app:title="@string/pref_force_volume"
             app:summary="@string/pref_force_volume_summary"
+            app:icon="@drawable/ic_volume"
             app:defaultValue="false" />
 
         <com.rme.picottspro.SingleChoiceListPreference
             app:key="forced_volume_value"
             app:title="@string/pref_forced_volume_value"
             app:dependency="force_volume"
-            app:defaultValue="100" />
+            app:defaultValue="50" />
 
         <SwitchPreferenceCompat
             app:key="force_voice"
@@ -68,6 +71,7 @@
             app:key="read_emojis"
             app:title="@string/pref_read_emojis"
             app:summary="@string/pref_read_emojis_summary"
+            app:icon="@drawable/ic_emoji"
             app:defaultValue="true" />
 
         <SwitchPreferenceCompat
@@ -89,6 +93,7 @@
             app:key="process_numbers"
             app:title="@string/pref_process_numbers"
             app:summary="@string/pref_process_numbers_summary"
+            app:icon="@drawable/ic_numbers"
             app:defaultValue="false" />
 
         <ListPreference
@@ -116,6 +121,7 @@
             app:key="manage_dictionary"
             app:title="@string/pref_manage_dictionary"
             app:summary="@string/pref_manage_dictionary_summary"
+            app:icon="@drawable/ic_dictionary"
             app:dependency="user_dictionary_enabled" />
     </PreferenceCategory>
 
@@ -127,7 +133,8 @@
         <Preference
             app:key="reset_defaults"
             app:title="@string/pref_reset_defaults"
-            app:summary="@string/pref_reset_defaults_summary" />
+            app:summary="@string/pref_reset_defaults_summary"
+            app:icon="@drawable/ic_reset" />
     </PreferenceCategory>
 
 </PreferenceScreen>

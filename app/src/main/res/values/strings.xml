@@ -45,7 +45,6 @@
     <!-- General Settings -->
     <string name="pref_read_emojis">Read emojis</string>
     <string name="pref_read_emojis_summary">Vocalize Unicode emojis and text emoticons</string>
-    <string name="pref_emoji_language">Emoji language</string>
 
     <string name="pref_process_punctuation">Process punctuation</string>
     <string name="pref_process_punctuation_summary">Vocalize punctuation marks during speech</string>
@@ -88,17 +87,6 @@
         <item>some</item>
         <item>most</item>
         <item>all</item>
-    </string-array>
-
-    <string-array name="emoji_lang_entries">
-        <item>Match Voice Language</item>
-        <item>Spanish</item>
-        <item>English</item>
-    </string-array>
-    <string-array name="emoji_lang_values">
-        <item>auto</item>
-        <item>es</item>
-        <item>en</item>
     </string-array>
 
     <string-array name="number_mode_entries">

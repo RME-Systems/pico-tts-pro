@@ -50,7 +50,25 @@ class MainActivity : AppCompatActivity() {
             .setView(view)
             .create()
 
-        view.findViewById<Button>(R.id.btnTelegram).setOnClickListener {
+        val btnTelegram = view.findViewById<Button>(R.id.btnTelegram)
+        val btnGitHub = view.findViewById<Button>(R.id.btnGitHub)
+
+        val iconSize = (24 * resources.displayMetrics.density).toInt()
+        val iconPadding = (12 * resources.displayMetrics.density).toInt()
+
+        androidx.core.content.ContextCompat.getDrawable(this, R.drawable.ic_telegram)?.let { d ->
+            d.setBounds(0, 0, iconSize, iconSize)
+            btnTelegram.setCompoundDrawables(d, null, null, null)
+            btnTelegram.compoundDrawablePadding = iconPadding
+        }
+
+        androidx.core.content.ContextCompat.getDrawable(this, R.drawable.ic_github)?.let { d ->
+            d.setBounds(0, 0, iconSize, iconSize)
+            btnGitHub.setCompoundDrawables(d, null, null, null)
+            btnGitHub.compoundDrawablePadding = iconPadding
+        }
+
+        btnTelegram.setOnClickListener {
             try {
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://t.me/rmesystems"))
                 startActivity(intent)

@@ -14,8 +14,6 @@ android {
         versionCode = 4
         versionName = "1.1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-
         externalNativeBuild {
             ndkBuild {
                 arguments("APP_STL=c++_shared", "APP_LDFLAGS+=-Wl,-z,max-page-size=16384")
@@ -50,10 +48,6 @@ android {
 
     kotlinOptions {
         jvmTarget = "17"
-    }
-
-    buildFeatures {
-        viewBinding = true
     }
 }
 

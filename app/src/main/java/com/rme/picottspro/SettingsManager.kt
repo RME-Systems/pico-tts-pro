@@ -25,7 +25,7 @@ class SettingsManager(context: Context) {
         get() = prefs.getBoolean("force_volume", false)
 
     val forcedVolumeValue: Int
-        get() = prefs.getInt("forced_volume_value", 100) // 1 to 100
+        get() = prefs.getInt("forced_volume_value", 50) // 1 to 100 (50 = normal 100%, 100 = 500% boost)
 
     val isForceVoice: Boolean
         get() = prefs.getBoolean("force_voice", false)
@@ -36,9 +36,6 @@ class SettingsManager(context: Context) {
     // General: Emojis, Punctuation & Numbers
     val isReadEmojis: Boolean
         get() = prefs.getBoolean("read_emojis", true)
-
-    val emojiLanguage: String
-        get() = prefs.getString("emoji_language", "auto") ?: "auto"
 
     val isProcessPunctuation: Boolean
         get() = prefs.getBoolean("process_punctuation", false)

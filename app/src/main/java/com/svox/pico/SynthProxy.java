@@ -135,6 +135,14 @@ public class SynthProxy {
     }
 
     /**
+     * Sets the volume of the synthesized voice.
+     * 100 is default, up to 500 for boosted volume.
+     */
+    public final int setVolume(int volume) {
+        return native_setProperty(mJniData, "volume", String.valueOf(volume));
+    }
+
+    /**
      * Returns the currently set language, country and locale information.
      */
     public String[] getLanguage() {
