@@ -2,9 +2,6 @@ package com.rme.picottspro
 
 import android.content.Context
 import android.util.Log
-import org.json.JSONObject
-import java.io.BufferedReader
-import java.io.InputStreamReader
 import java.util.Locale
 
 class TextProcessor(
@@ -15,9 +12,6 @@ class TextProcessor(
     companion object {
         private const val TAG = "TextProcessor"
     }
-
-    // Cache of loaded emoji maps per locale to avoid re-reading disk
-    private val emojiCache = HashMap<String, Map<String, String>>()
 
     private val punctuationSpanishMap = mapOf(
         '.' to " punto ",
@@ -81,13 +75,28 @@ class TextProcessor(
         '_' to " underscore "
     )
 
+    init {
+        // Preload EmojiData in background or synchronously to be ready
+        try {
+            EmojiData.ensureLoaded(context)
+        } catch (e: Throwable) {
+            Log.e(TAG, "Failed early EmojiData load: ${e.message}", e)
+        }
+    }
+
     fun process(rawText: String, activeLocale: Locale): String {
         if (rawText.isEmpty()) return rawText
         var text = rawText
 
-        // 1. Process Emojis: single-pass scanner, zero-delay
-        if (settings.isReadEmojis && containsPotentialEmoji(text)) {
-            text = processEmojisSinglePass(text, activeLocale)
+        // 1. Process Unicode Emojis & ASCII Emoticons
+        if (settings.isReadEmojis) {
+            val targetLang = when (val pref = settings.emojiLanguage) {
+                "auto" -> activeLocale.language
+                else -> pref
+            }
+            EmojiData.ensureLoaded(context)
+            text = processEmojisWithTrie(text, targetLang)
+            text = EmoticonProcessor.process(text, targetLang)
         }
 
         // 2. Process Punctuation
@@ -100,105 +109,58 @@ class TextProcessor(
     }
 
     /**
-     * Emojis are in higher Unicode code ranges (>= 0x2000 for symbols, >= 0x1F000 for standard emojis).
-     * Spanish letters like á, é, í, ó, ú, ñ, ü are <= 0x0100 and will NOT trigger this check.
+     * Fast in-memory UTF-16 Trie traversal matching all 3,800+ Unicode 16.0 / CLDR 48 emojis,
+     * including ZWJ multi-character sequences, skin-tone modifiers, variation selectors, and objects.
+     * Consecutive emojis are comma-separated for clean TalkBack cadence.
      */
-    private fun containsPotentialEmoji(s: String): Boolean {
+    private fun processEmojisWithTrie(text: String, language: String): String {
+        if (text.isEmpty() || !EmojiData.isLoaded) return text
+
+        val langIdx = EmojiData.getLanguageIndex(language)
+        val sb = StringBuilder(text.length + 64)
         var i = 0
-        val len = s.length
-        while (i < len) {
-            val cp = Character.codePointAt(s, i)
-            if (cp >= 0x2000) {
-                return true
-            }
-            i += Character.charCount(cp)
-        }
-        return false
-    }
+        var prevWasEmoji = false
 
-    private fun getEmojiMap(langCode: String): Map<String, String> {
-        val normalized = when (langCode) {
-            "es", "spa" -> "es"
-            "en", "eng" -> "en"
-            "fr", "fra" -> "fr"
-            "de", "deu" -> "de"
-            "it", "ita" -> "it"
-            else -> "en"
-        }
+        while (i < text.length) {
+            val match = EmojiData.findLongestMatch(text, i)
+            if (match != null) {
+                val (matchLen, ttsArray) = match
+                val spoken = ttsArray[langIdx] ?: ttsArray[EmojiData.LANG_EN] ?: ""
 
-        synchronized(emojiCache) {
-            val cached = emojiCache[normalized]
-            if (cached != null) return cached
-
-            val map = HashMap<String, String>(4000)
-            try {
-                val assetPath = "emojis/emojis_$normalized.json"
-                context.assets.open(assetPath).use { stream ->
-                    BufferedReader(InputStreamReader(stream, Charsets.UTF_8)).use { reader ->
-                        val jsonString = reader.readText()
-                        val json = JSONObject(jsonString)
-                        val keys = json.keys()
-                        while (keys.hasNext()) {
-                            val key = keys.next()
-                            map[key] = json.getString(key)
+                if (spoken.isNotEmpty()) {
+                    if (prevWasEmoji) {
+                        while (sb.isNotEmpty() && Character.isWhitespace(sb[sb.length - 1])) {
+                            sb.deleteCharAt(sb.length - 1)
+                        }
+                        sb.append(", ")
+                    } else if (sb.isNotEmpty()) {
+                        val prevChar = sb[sb.length - 1]
+                        if (Character.isLetterOrDigit(prevChar)) {
+                            sb.append(' ')
                         }
                     }
-                }
-                Log.i(TAG, "Loaded ${map.size} emojis for language '$normalized'")
-            } catch (e: Exception) {
-                Log.e(TAG, "Failed to load emoji table for '$normalized': ${e.message}")
-            }
-            emojiCache[normalized] = map
-            return map
-        }
-    }
 
-    /**
-     * Single-pass scanner: reads through the string once O(N), looking up emoji sequences
-     * in the HashMap O(1). No 4000-iteration loops.
-     */
-    private fun processEmojisSinglePass(text: String, activeLocale: Locale): String {
-        val targetLang = when (val pref = settings.emojiLanguage) {
-            "auto" -> activeLocale.language
-            else -> pref
-        }
+                    sb.append(spoken)
 
-        val dictionary = getEmojiMap(targetLang)
-        if (dictionary.isEmpty()) return text
+                    val nextIdx = i + matchLen
+                    if (nextIdx < text.length) {
+                        val nextChar = text[nextIdx]
+                        if (Character.isLetterOrDigit(nextChar)) {
+                            sb.append(' ')
+                        }
+                    }
 
-        val sb = StringBuilder(text.length + 32)
-        var i = 0
-        val len = text.length
-
-        while (i < len) {
-            val cp = Character.codePointAt(text, i)
-            val charCount = Character.charCount(cp)
-
-            if (cp < 0x2000) {
-                // Regular character, copy directly
-                sb.appendCodePoint(cp)
-                i += charCount
-                continue
-            }
-
-            // Potential emoji: look ahead up to 10 characters for composite emojis (ZWJ, skin tones)
-            var matched = false
-            val maxLookahead = minOf(len, i + 12)
-            for (end in maxLookahead downTo i + charCount) {
-                val candidate = text.substring(i, end)
-                val description = dictionary[candidate]
-                if (description != null) {
-                    sb.append(" ").append(description).append(" ")
-                    i = end
-                    matched = true
-                    break
+                    i += matchLen
+                    prevWasEmoji = true
+                    continue
                 }
             }
 
-            if (!matched) {
-                // Standalone character not in emoji dictionary
-                sb.appendCodePoint(cp)
-                i += charCount
+            val ch = text[i]
+            sb.append(ch)
+            i++
+            if (!Character.isWhitespace(ch)) {
+                prevWasEmoji = false
             }
         }
 
