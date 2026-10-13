@@ -27,20 +27,20 @@
 
     <!-- Voice Settings -->
     <string name="pref_force_rate">Force speech rate</string>
-    <string name="pref_force_rate_summary">Ignore app/system rate and strictly use the forced rate below</string>
-    <string name="pref_forced_rate_value">Forced speech rate (1 to 100)</string>
+    <string name="pref_force_rate_summary">Ignore app/system rate and strictly use the fixed rate below</string>
+    <string name="pref_forced_rate_value">Speech rate</string>
 
     <string name="pref_force_pitch">Force pitch</string>
-    <string name="pref_force_pitch_summary">Ignore app/system pitch and strictly use the forced pitch below</string>
-    <string name="pref_forced_pitch_value">Forced pitch (1 to 100)</string>
+    <string name="pref_force_pitch_summary">Ignore app/system pitch and strictly use the fixed pitch below</string>
+    <string name="pref_forced_pitch_value">Pitch</string>
 
     <string name="pref_force_volume">Force volume</string>
     <string name="pref_force_volume_summary">Keep speech volume fixed at the configured level below</string>
-    <string name="pref_forced_volume_value">Forced volume (1 to 100)</string>
+    <string name="pref_forced_volume_value">Volume</string>
 
     <string name="pref_force_voice">Force voice language</string>
-    <string name="pref_force_voice_summary">Always use the default voice language selected below</string>
-    <string name="pref_default_voice">Default voice language</string>
+    <string name="pref_force_voice_summary">Always use the voice language selected below</string>
+    <string name="pref_default_voice">Voice language</string>
 
     <!-- General Settings -->
     <string name="pref_read_emojis">Read emojis</string>

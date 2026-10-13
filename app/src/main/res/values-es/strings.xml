@@ -27,20 +27,20 @@
 
     <!-- Ajustes de Voz -->
     <string name="pref_force_rate">Forzar velocidad</string>
-    <string name="pref_force_rate_summary">Ignorar la velocidad de las aplicaciones y usar el valor forzado</string>
-    <string name="pref_forced_rate_value">Velocidad forzada (1 a 100)</string>
+    <string name="pref_force_rate_summary">Ignorar la velocidad de las aplicaciones y usar el valor fijado</string>
+    <string name="pref_forced_rate_value">Velocidad</string>
 
     <string name="pref_force_pitch">Forzar tono</string>
-    <string name="pref_force_pitch_summary">Ignorar el tono de las aplicaciones y usar el valor forzado</string>
-    <string name="pref_forced_pitch_value">Tono forzado (1 a 100)</string>
+    <string name="pref_force_pitch_summary">Ignorar el tono de las aplicaciones y usar el valor fijado</string>
+    <string name="pref_forced_pitch_value">Tono</string>
 
     <string name="pref_force_volume">Forzar volumen</string>
     <string name="pref_force_volume_summary">Mantener el volumen fijo en el nivel configurado</string>
-    <string name="pref_forced_volume_value">Volumen forzado (1 a 100)</string>
+    <string name="pref_forced_volume_value">Volumen</string>
 
     <string name="pref_force_voice">Forzar idioma de voz</string>
     <string name="pref_force_voice_summary">Usar siempre el idioma de voz predeterminado elegido abajo</string>
-    <string name="pref_default_voice">Idioma de voz predeterminado</string>
+    <string name="pref_default_voice">Idioma de voz</string>
 
     <!-- Ajustes Generales -->
     <string name="pref_read_emojis">Activar leer emojis</string>
