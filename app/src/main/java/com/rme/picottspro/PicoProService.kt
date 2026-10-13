@@ -189,14 +189,17 @@ class PicoProService : TextToSpeechService() {
             return
         }
 
-        // 1. Language handling with safe fallback
-        val reqLang = request.language ?: ""
-        val reqCountry = request.country ?: ""
-        val reqVariant = request.variant ?: ""
+        // 1. Language handling with safe fallback or forced voice
+        val (targetLang, targetCountry, targetVariant) = if (settings.isForceVoice) {
+            val parts = settings.defaultVoice.split("-")
+            Triple(parts.getOrNull(0) ?: "spa", parts.getOrNull(1) ?: "ESP", "")
+        } else {
+            Triple(request.language ?: "", request.country ?: "", request.variant ?: "")
+        }
 
-        if (proxy.setLanguage(reqLang, reqCountry, reqVariant) != TextToSpeech.SUCCESS) {
-            val normLang = normalizeLanguage(reqLang)
-            val normCountry = normalizeCountry(normLang, reqCountry)
+        if (proxy.setLanguage(targetLang, targetCountry, targetVariant) != TextToSpeech.SUCCESS) {
+            val normLang = normalizeLanguage(targetLang)
+            val normCountry = normalizeCountry(normLang, targetCountry)
             if (proxy.setLanguage(normLang, normCountry, "") != TextToSpeech.SUCCESS) {
                 if (proxy.setLanguage("eng", "USA", "") != TextToSpeech.SUCCESS) {
                     callback.error()
@@ -223,8 +226,12 @@ class PicoProService : TextToSpeechService() {
         }
         proxy.setPitch(pitch)
 
-        // 4. Emojis and Punctuation Processing
-        val activeLocale = Locale.getDefault()
+        // 4. Emojis, Numbers, Dictionary and Punctuation Processing
+        val activeLocale = if (targetLang.isNotEmpty()) {
+            Locale(targetLang, targetCountry)
+        } else {
+            Locale.getDefault()
+        }
         val processedText = textProcessor.process(rawText, activeLocale)
 
         // 5. Synthesize

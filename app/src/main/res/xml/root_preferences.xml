@@ -2,8 +2,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <!-- TÍTULO 1: VOZ -->
     <PreferenceCategory
-        app:title="@string/category_force_params"
+        app:title="@string/category_voice_title"
         app:icon="@drawable/ic_speed">
 
         <SwitchPreferenceCompat
@@ -41,10 +42,26 @@
             app:title="@string/pref_forced_volume_value"
             app:dependency="force_volume"
             app:defaultValue="100" />
+
+        <SwitchPreferenceCompat
+            app:key="force_voice"
+            app:title="@string/pref_force_voice"
+            app:summary="@string/pref_force_voice_summary"
+            app:defaultValue="false" />
+
+        <ListPreference
+            app:key="default_voice"
+            app:title="@string/pref_default_voice"
+            app:summary="%s"
+            app:entries="@array/voice_entries"
+            app:entryValues="@array/voice_values"
+            app:dependency="force_voice"
+            app:defaultValue="spa-ESP" />
     </PreferenceCategory>
 
+    <!-- TÍTULO 2: GENERAL -->
     <PreferenceCategory
-        app:title="@string/category_emojis_text"
+        app:title="@string/category_general_title"
         app:icon="@drawable/ic_emoji">
 
         <SwitchPreferenceCompat
@@ -53,14 +70,11 @@
             app:summary="@string/pref_read_emojis_summary"
             app:defaultValue="true" />
 
-        <ListPreference
-            app:key="emoji_language"
-            app:title="@string/pref_emoji_language"
-            app:summary="%s"
-            app:entries="@array/emoji_lang_entries"
-            app:entryValues="@array/emoji_lang_values"
-            app:defaultValue="auto"
-            app:dependency="read_emojis" />
+        <SwitchPreferenceCompat
+            app:key="process_punctuation"
+            app:title="@string/pref_process_punctuation"
+            app:summary="@string/pref_process_punctuation_summary"
+            app:defaultValue="false" />
 
         <ListPreference
             app:key="punctuation_level"
@@ -68,30 +82,52 @@
             app:summary="%s"
             app:entries="@array/punctuation_entries"
             app:entryValues="@array/punctuation_values"
-            app:defaultValue="none" />
-    </PreferenceCategory>
+            app:defaultValue="some"
+            app:dependency="process_punctuation" />
 
-    <PreferenceCategory
-        app:title="@string/category_voice"
-        app:icon="@drawable/ic_pitch">
+        <SwitchPreferenceCompat
+            app:key="process_numbers"
+            app:title="@string/pref_process_numbers"
+            app:summary="@string/pref_process_numbers_summary"
+            app:defaultValue="false" />
 
         <ListPreference
-            app:key="default_voice"
-            app:title="@string/pref_default_voice"
+            app:key="number_mode"
+            app:title="@string/pref_number_mode"
             app:summary="%s"
-            app:entries="@array/voice_entries"
-            app:entryValues="@array/voice_values"
-            app:defaultValue="spa-ESP" />
+            app:entries="@array/number_mode_entries"
+            app:entryValues="@array/number_mode_values"
+            app:defaultValue="3"
+            app:dependency="process_numbers" />
     </PreferenceCategory>
 
+    <!-- TÍTULO 3: DICCIONARIO DE USUARIO -->
     <PreferenceCategory
-        app:title="@string/category_system"
-        app:icon="@drawable/ic_system">
+        app:title="@string/category_dictionary_title"
+        app:icon="@drawable/ic_dictionary">
+
+        <SwitchPreferenceCompat
+            app:key="user_dictionary_enabled"
+            app:title="@string/pref_user_dictionary_enabled"
+            app:summary="@string/pref_user_dictionary_enabled_summary"
+            app:defaultValue="false" />
 
         <Preference
-            app:key="open_tts_settings"
-            app:title="@string/pref_open_tts_settings"
-            app:summary="@string/pref_open_tts_settings_summary" />
+            app:key="manage_dictionary"
+            app:title="@string/pref_manage_dictionary"
+            app:summary="@string/pref_manage_dictionary_summary"
+            app:dependency="user_dictionary_enabled" />
+    </PreferenceCategory>
+
+    <!-- TÍTULO 4: VALORES POR DEFECTO -->
+    <PreferenceCategory
+        app:title="@string/category_defaults_title"
+        app:icon="@drawable/ic_reset">
+
+        <Preference
+            app:key="reset_defaults"
+            app:title="@string/pref_reset_defaults"
+            app:summary="@string/pref_reset_defaults_summary" />
     </PreferenceCategory>
 
 </PreferenceScreen>

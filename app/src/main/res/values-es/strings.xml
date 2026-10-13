@@ -1,68 +1,119 @@
 <resources>
     <string name="app_name">Pico TTS Pro</string>
 
-    <!-- Categorías -->
-    <string name="category_voice">Voz y Audio</string>
-    <string name="category_force_params">Anulación y Control de Voz</string>
-    <string name="category_emojis_text">Emojis y Procesamiento de Texto</string>
-    <string name="category_dictionary">Diccionario de Usuario</string>
-    <string name="category_system">Sistema y Respaldo</string>
+    <!-- Pantalla Principal -->
+    <string name="main_menu_title">Menú Principal</string>
+    <string name="btn_pico_settings">Ajustes de Pico TTS Pro</string>
+    <string name="btn_pico_settings_summary">Configura velocidad, tono, volumen, idioma, emojis y diccionario</string>
+    <string name="btn_system_tts_settings">Configuración TTS del sistema</string>
+    <string name="btn_system_tts_settings_summary">Abrir los ajustes del sintetizador de voz de Android</string>
+    <string name="btn_about">Acerca de</string>
+    <string name="btn_about_summary">Información de la aplicación, créditos y contacto</string>
+
+    <!-- Acerca de -->
+    <string name="about_title">Acerca de Pico TTS Pro</string>
+    <string name="about_app_desc">Sintetizador de texto a voz rápido, ultraligero y accesible para Android.</string>
+    <string name="about_version">Versión 1.1.0</string>
+    <string name="about_credits">Créditos:\n• SVOX Pico TTS: Motor nativo original de síntesis acústica.\n• Desarrollado y optimizado por Rodrigo Condori Flores (RME Systems).</string>
+    <string name="btn_telegram">Telegram (@rmesystems)</string>
+    <string name="btn_github">Repositorio en GitHub</string>
+    <string name="btn_accept">Aceptar</string>
+
+    <!-- Categorías de Ajustes -->
+    <string name="category_voice_title">Voz</string>
+    <string name="category_general_title">General</string>
+    <string name="category_dictionary_title">Diccionario de usuario</string>
+    <string name="category_defaults_title">Valores por defecto</string>
 
     <!-- Ajustes de Voz -->
-    <string name="pref_default_voice">Voz predeterminada</string>
-    <string name="pref_default_voice_summary">Voz a utilizar cuando la aplicación no especifique una</string>
-
-    <!-- Forzar Velocidad -->
     <string name="pref_force_rate">Forzar velocidad</string>
-    <string name="pref_force_rate_summary">Ignorar la velocidad del sistema y las aplicaciones, usando siempre la configurada aquí</string>
-    <string name="pref_forced_rate_value">Velocidad forzada</string>
+    <string name="pref_force_rate_summary">Ignorar la velocidad de las aplicaciones y usar el valor forzado</string>
+    <string name="pref_forced_rate_value">Velocidad forzada (1 a 100)</string>
 
-    <!-- Forzar Tono -->
     <string name="pref_force_pitch">Forzar tono</string>
-    <string name="pref_force_pitch_summary">Ignorar el tono del sistema y las aplicaciones, usando siempre el configurado aquí</string>
-    <string name="pref_forced_pitch_value">Tono forzado</string>
+    <string name="pref_force_pitch_summary">Ignorar el tono de las aplicaciones y usar el valor forzado</string>
+    <string name="pref_forced_pitch_value">Tono forzado (1 a 100)</string>
 
-    <!-- Forzar Volumen -->
     <string name="pref_force_volume">Forzar volumen</string>
-    <string name="pref_force_volume_summary">Mantener el volumen de la voz en un nivel fijo configurado aquí</string>
-    <string name="pref_forced_volume_value">Volumen forzado</string>
+    <string name="pref_force_volume_summary">Mantener el volumen fijo en el nivel configurado</string>
+    <string name="pref_forced_volume_value">Volumen forzado (1 a 100)</string>
 
-    <!-- Emojis -->
-    <string name="pref_read_emojis">Leer emojis</string>
-    <string name="pref_read_emojis_summary">Traducir emojis a palabras habladas</string>
+    <string name="pref_force_voice">Forzar idioma de voz</string>
+    <string name="pref_force_voice_summary">Usar siempre el idioma de voz predeterminado elegido abajo</string>
+    <string name="pref_default_voice">Idioma de voz predeterminado</string>
+
+    <!-- Ajustes Generales -->
+    <string name="pref_read_emojis">Activar leer emojis</string>
+    <string name="pref_read_emojis_summary">Verbalizar emojis Unicode y emoticonos de texto</string>
     <string name="pref_emoji_language">Idioma de los emojis</string>
-    <string name="pref_emoji_language_summary">Idioma utilizado para pronunciar los emojis</string>
 
-    <!-- Puntuación -->
+    <string name="pref_process_punctuation">Procesar puntuación</string>
+    <string name="pref_process_punctuation_summary">Verbalizar signos de puntuación durante la lectura</string>
     <string name="pref_punctuation_level">Nivel de puntuación</string>
-    <string name="pref_punctuation_level_summary">Elegir qué signos de puntuación se verbalizan</string>
+
+    <string name="pref_process_numbers">Procesar números</string>
+    <string name="pref_process_numbers_summary">Agrupar o deletrear dígitos de forma inteligente</string>
+    <string name="pref_number_mode">Modo de procesamiento de números</string>
 
     <!-- Diccionario de Usuario -->
-    <string name="pref_manage_dictionary">Administrar diccionario</string>
-    <string name="pref_manage_dictionary_summary">Añadir reglas de pronunciación personalizadas</string>
+    <string name="pref_user_dictionary_enabled">Activar diccionario de usuario</string>
+    <string name="pref_user_dictionary_enabled_summary">Aplicar reglas de reemplazo y pronunciación personalizada</string>
+    <string name="pref_manage_dictionary">Administrar reglas del diccionario</string>
+    <string name="pref_manage_dictionary_summary">Añadir, editar o eliminar palabras personalizadas</string>
 
-    <!-- Sistema -->
-    <string name="pref_open_tts_settings">Ajustes de Texto a Voz de Android</string>
-    <string name="pref_open_tts_settings_summary">Abrir los ajustes del sintetizador del sistema</string>
-    <string name="pref_fallback_lang">Idioma de respaldo</string>
-    <string name="pref_fallback_lang_summary">Idioma a usar cuando el solicitado no esté disponible</string>
+    <!-- Valores por Defecto -->
+    <string name="pref_reset_defaults">Restablecer todos los parámetros</string>
+    <string name="pref_reset_defaults_summary">Restaurar toda la configuración a los valores de fábrica</string>
+    <string name="dialog_reset_title">Restablecer parámetros</string>
+    <string name="dialog_reset_message">¿Deseas restablecer todos los parámetros a sus valores por defecto de fábrica?</string>
+    <string name="btn_cancel">Cancelar</string>
 
-    <!-- Entradas de puntuación -->
+    <!-- Diccionario Dialogs -->
+    <string name="dialog_add_word">Añadir palabra al diccionario</string>
+    <string name="hint_original_word">Palabra original</string>
+    <string name="hint_replacement_word">Cómo debe pronunciarse</string>
+    <string name="btn_add">Añadir</string>
+    <string name="btn_delete">Eliminar</string>
+    <string name="empty_dictionary">No hay palabras añadidas en el diccionario aún.</string>
+
+    <!-- Arrays -->
     <string-array name="punctuation_entries">
         <item>Ninguna</item>
         <item>Alguna</item>
         <item>La mayoría</item>
         <item>Toda</item>
     </string-array>
+    <string-array name="punctuation_values">
+        <item>none</item>
+        <item>some</item>
+        <item>most</item>
+        <item>all</item>
+    </string-array>
 
-    <!-- Entradas de idioma de emojis -->
     <string-array name="emoji_lang_entries">
         <item>Igual al idioma de la voz</item>
         <item>Español</item>
         <item>Inglés</item>
     </string-array>
+    <string-array name="emoji_lang_values">
+        <item>auto</item>
+        <item>es</item>
+        <item>en</item>
+    </string-array>
 
-    <!-- Entradas de voz -->
+    <string-array name="number_mode_entries">
+        <item>Inteligente (OTP, teléfonos y fechas)</item>
+        <item>Dígito por dígito (1 2 3 4)</item>
+        <item>En pares (12 34)</item>
+        <item>En tríos (1 234)</item>
+    </string-array>
+    <string-array name="number_mode_values">
+        <item>3</item>
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
     <string-array name="voice_entries">
         <item>Español (España)</item>
         <item>Inglés (Estados Unidos)</item>
@@ -71,12 +122,20 @@
         <item>Alemán (Alemania)</item>
         <item>Italiano (Italia)</item>
     </string-array>
+    <string-array name="voice_values">
+        <item>spa-ESP</item>
+        <item>eng-USA</item>
+        <item>eng-GBR</item>
+        <item>fra-FRA</item>
+        <item>deu-DEU</item>
+        <item>ita-ITA</item>
+    </string-array>
 
     <!-- Muestras de texto para TTS GetSampleText -->
     <string name="eng_usa_sample">This is an example of speech synthesis in English with Pico.</string>
     <string name="eng_gbr_sample">This is an example of speech synthesis in English with Pico.</string>
     <string name="fra_fra_sample">Voici un échantillon de synthèse vocale en français avec Pico.</string>
     <string name="deu_deu_sample">Dies ist ein Beispiel für Sprachsynthese in Deutsch mit Pico.</string>
-    <string name="ita_ita_sample">Questo è un esempio di sintesi vocale in italiano con Pico.</string>
+    <string name="ita_ita_sample">Questo è un ejemplo de síntesis vocale in italiano con Pico.</string>
     <string name="spa_esp_sample">Este es un ejemplo de síntesis de voz en español con Pico.</string>
 </resources>

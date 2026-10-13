@@ -13,6 +13,8 @@ class TextProcessor(
         private const val TAG = "TextProcessor"
     }
 
+    private val userDict = UserDictionaryManager(context)
+
     private val punctuationSpanishMap = mapOf(
         '.' to " punto ",
         ',' to " coma ",
@@ -76,7 +78,6 @@ class TextProcessor(
     )
 
     init {
-        // Preload EmojiData in background or synchronously to be ready
         try {
             EmojiData.ensureLoaded(context)
         } catch (e: Throwable) {
@@ -84,35 +85,41 @@ class TextProcessor(
         }
     }
 
+    fun getUserDictionary(): UserDictionaryManager = userDict
+
     fun process(rawText: String, activeLocale: Locale): String {
         if (rawText.isEmpty()) return rawText
         var text = rawText
 
-        // 1. Process Unicode Emojis & ASCII Emoticons
+        // 1. User Dictionary Replacements
+        if (settings.isUserDictionaryEnabled) {
+            text = userDict.process(text)
+        }
+
+        // 2. Unicode Emojis & ASCII Emoticons (idioma ligado a la voz activa)
         if (settings.isReadEmojis) {
-            val targetLang = when (val pref = settings.emojiLanguage) {
-                "auto" -> activeLocale.language
-                else -> pref
-            }
+            val targetLang = activeLocale.language
             EmojiData.ensureLoaded(context)
             text = processEmojisWithTrie(text, targetLang)
             text = EmoticonProcessor.process(text, targetLang)
         }
 
-        // 2. Process Punctuation
-        val punctLevel = settings.punctuationLevel
-        if (punctLevel != "none") {
-            text = processPunctuation(text, punctLevel, activeLocale)
+        // 3. Number Processing (Digits, Pairs, Triplets, Smart)
+        if (settings.isProcessNumbers) {
+            text = NumberProcessor.process(text, enabled = true, mode = settings.numberMode)
+        }
+
+        // 4. Punctuation Processing
+        if (settings.isProcessPunctuation) {
+            val punctLevel = settings.punctuationLevel
+            if (punctLevel != "none") {
+                text = processPunctuation(text, punctLevel, activeLocale)
+            }
         }
 
         return text
     }
 
-    /**
-     * Fast in-memory UTF-16 Trie traversal matching all 3,800+ Unicode 16.0 / CLDR 48 emojis,
-     * including ZWJ multi-character sequences, skin-tone modifiers, variation selectors, and objects.
-     * Consecutive emojis are comma-separated for clean TalkBack cadence.
-     */
     private fun processEmojisWithTrie(text: String, language: String): String {
         if (text.isEmpty() || !EmojiData.isLoaded) return text
 
