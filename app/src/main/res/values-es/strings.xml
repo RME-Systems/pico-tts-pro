@@ -17,6 +17,7 @@
     <string name="about_credits">Créditos:\n• SVOX Pico TTS: Motor nativo original de síntesis acústica.\n• Desarrollado y optimizado por Rodrigo Condori Flores (RME Systems).</string>
     <string name="btn_telegram">Telegram (@rmesystems)</string>
     <string name="btn_github">Repositorio en GitHub</string>
+    <string name="btn_privacy_policy">Política de privacidad</string>
     <string name="btn_accept">Aceptar</string>
 
     <!-- Categorías de Ajustes -->
@@ -59,6 +60,15 @@
     <string name="pref_user_dictionary_enabled_summary">Aplicar reglas de reemplazo y pronunciación personalizada</string>
     <string name="pref_manage_dictionary">Administrar reglas del diccionario</string>
     <string name="pref_manage_dictionary_summary">Añadir, editar o eliminar palabras personalizadas</string>
+    <string name="pref_import_dictionary">Importar diccionario</string>
+    <string name="pref_import_dictionary_summary">Importar reglas desde un archivo JSON o de texto</string>
+    <string name="pref_export_dictionary">Exportar diccionario</string>
+    <string name="pref_export_dictionary_summary">Exportar las reglas actuales a un archivo JSON</string>
+    <string name="toast_export_success">Diccionario exportado correctamente</string>
+    <string name="toast_export_error">Error al exportar diccionario: %s</string>
+    <string name="toast_import_success">Se importaron %d reglas correctamente</string>
+    <string name="toast_import_empty">No se encontraron reglas válidas en el archivo</string>
+    <string name="toast_import_error">Error al importar diccionario: %s</string>
 
     <!-- Valores por Defecto -->
     <string name="pref_reset_defaults">Restablecer todos los parámetros</string>
@@ -69,9 +79,11 @@
 
     <!-- Diccionario Dialogs -->
     <string name="dialog_add_word">Añadir palabra al diccionario</string>
+    <string name="dialog_edit_word">Editar palabra del diccionario</string>
     <string name="hint_original_word">Palabra original</string>
     <string name="hint_replacement_word">Cómo debe pronunciarse</string>
     <string name="btn_add">Añadir</string>
+    <string name="btn_save">Guardar</string>
     <string name="btn_delete">Eliminar</string>
     <string name="empty_dictionary">No hay palabras añadidas en el diccionario aún.</string>
 

@@ -1,10 +1,12 @@
 package com.rme.picottspro
 
 import android.content.Context
+import android.net.Uri
 import android.os.Bundle
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.Preference
@@ -30,12 +32,64 @@ class SettingsActivity : AppCompatActivity() {
 
     class SettingsFragment : PreferenceFragmentCompat() {
 
+        private val exportLauncher = registerForActivityResult(ActivityResultContracts.CreateDocument("application/json")) { uri: Uri? ->
+            if (uri != null) {
+                val ctx = context ?: return@registerForActivityResult
+                try {
+                    val dictManager = UserDictionaryManager(ctx)
+                    val json = dictManager.exportToJson()
+                    ctx.contentResolver.openOutputStream(uri)?.use { stream ->
+                        stream.bufferedWriter(Charsets.UTF_8).use { writer ->
+                            writer.write(json)
+                        }
+                    }
+                    Toast.makeText(ctx, R.string.toast_export_success, Toast.LENGTH_SHORT).show()
+                } catch (e: Exception) {
+                    Toast.makeText(ctx, getString(R.string.toast_export_error, e.message ?: ""), Toast.LENGTH_LONG).show()
+                }
+            }
+        }
+
+        private val importLauncher = registerForActivityResult(ActivityResultContracts.OpenDocument()) { uri: Uri? ->
+            if (uri != null) {
+                val ctx = context ?: return@registerForActivityResult
+                try {
+                    val content = ctx.contentResolver.openInputStream(uri)?.use { stream ->
+                        stream.bufferedReader(Charsets.UTF_8).readText()
+                    }
+                    if (content != null) {
+                        val dictManager = UserDictionaryManager(ctx)
+                        val count = dictManager.importEntries(content)
+                        if (count > 0) {
+                            Toast.makeText(ctx, getString(R.string.toast_import_success, count), Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(ctx, R.string.toast_import_empty, Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                } catch (e: Exception) {
+                    Toast.makeText(ctx, getString(R.string.toast_import_error, e.message ?: ""), Toast.LENGTH_LONG).show()
+                }
+            }
+        }
+
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
             setPreferencesFromResource(R.xml.root_preferences, rootKey)
 
             // Administrar Diccionario
             findPreference<Preference>("manage_dictionary")?.setOnPreferenceClickListener {
                 showManageDictionaryDialog(requireContext())
+                true
+            }
+
+            // Importar Diccionario
+            findPreference<Preference>("import_dictionary")?.setOnPreferenceClickListener {
+                importLauncher.launch(arrayOf("application/json", "text/*", "*/*"))
+                true
+            }
+
+            // Exportar Diccionario
+            findPreference<Preference>("export_dictionary")?.setOnPreferenceClickListener {
+                exportLauncher.launch("pico_user_dictionary.json")
                 true
             }
 
@@ -79,20 +133,53 @@ class SettingsActivity : AppCompatActivity() {
                         // Click en "+ Añadir palabra"
                         showAddWordDialog(context, dictManager)
                     } else if (entries.isNotEmpty()) {
-                        // Click en palabra existente para borrar
+                        // Click en palabra existente para editar o borrar
                         val entry = entries[which]
-                        AlertDialog.Builder(context)
-                            .setTitle(entry.word)
-                            .setMessage("${context.getString(R.string.hint_replacement_word)}: ${entry.replacement}")
-                            .setPositiveButton(R.string.btn_delete) { _, _ ->
-                                dictManager.removeEntry(entry.id)
-                                showManageDictionaryDialog(context)
-                            }
-                            .setNegativeButton(R.string.btn_cancel, null)
-                            .show()
+                        showEditWordDialog(context, dictManager, entry)
                     }
                 }
                 .setNegativeButton(R.string.btn_accept, null)
+                .show()
+        }
+
+        private fun showEditWordDialog(context: Context, dictManager: UserDictionaryManager, entry: DictionaryEntry) {
+            val layout = LinearLayout(context).apply {
+                orientation = LinearLayout.VERTICAL
+                setPadding(50, 40, 50, 10)
+            }
+
+            val inputWord = EditText(context).apply {
+                hint = context.getString(R.string.hint_original_word)
+                setText(entry.word)
+                setSelection(entry.word.length)
+            }
+            val inputReplacement = EditText(context).apply {
+                hint = context.getString(R.string.hint_replacement_word)
+                setText(entry.replacement)
+                setSelection(entry.replacement.length)
+            }
+
+            layout.addView(inputWord)
+            layout.addView(inputReplacement)
+
+            AlertDialog.Builder(context)
+                .setTitle(R.string.dialog_edit_word)
+                .setView(layout)
+                .setPositiveButton(R.string.btn_save) { _, _ ->
+                    val w = inputWord.text.toString().trim()
+                    val r = inputReplacement.text.toString().trim()
+                    if (w.isNotEmpty() && r.isNotEmpty()) {
+                        dictManager.updateEntry(entry.id, w, r)
+                    }
+                    showManageDictionaryDialog(context)
+                }
+                .setNeutralButton(R.string.btn_delete) { _, _ ->
+                    dictManager.removeEntry(entry.id)
+                    showManageDictionaryDialog(context)
+                }
+                .setNegativeButton(R.string.btn_cancel) { _, _ ->
+                    showManageDictionaryDialog(context)
+                }
                 .show()
         }
 

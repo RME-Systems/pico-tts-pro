@@ -68,6 +68,13 @@ class MainActivity : AppCompatActivity() {
             btnGitHub.compoundDrawablePadding = iconPadding
         }
 
+        val btnPrivacyPolicy = view.findViewById<Button>(R.id.btnPrivacyPolicy)
+        androidx.core.content.ContextCompat.getDrawable(this, R.drawable.ic_privacy)?.let { d ->
+            d.setBounds(0, 0, iconSize, iconSize)
+            btnPrivacyPolicy.setCompoundDrawables(d, null, null, null)
+            btnPrivacyPolicy.compoundDrawablePadding = iconPadding
+        }
+
         btnTelegram.setOnClickListener {
             try {
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://t.me/rmesystems"))
@@ -75,9 +82,16 @@ class MainActivity : AppCompatActivity() {
             } catch (_: Exception) {}
         }
 
-        view.findViewById<Button>(R.id.btnGitHub).setOnClickListener {
+        btnGitHub.setOnClickListener {
             try {
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/RME-Systems/pico-tts-pro"))
+                startActivity(intent)
+            } catch (_: Exception) {}
+        }
+
+        btnPrivacyPolicy.setOnClickListener {
+            try {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://storage.rmesystems.com/apps/picottspro/privacy-policy.html"))
                 startActivity(intent)
             } catch (_: Exception) {}
         }

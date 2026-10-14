@@ -123,6 +123,20 @@
             app:summary="@string/pref_manage_dictionary_summary"
             app:icon="@drawable/ic_dictionary"
             app:dependency="user_dictionary_enabled" />
+
+        <Preference
+            app:key="import_dictionary"
+            app:title="@string/pref_import_dictionary"
+            app:summary="@string/pref_import_dictionary_summary"
+            app:icon="@drawable/ic_import"
+            app:dependency="user_dictionary_enabled" />
+
+        <Preference
+            app:key="export_dictionary"
+            app:title="@string/pref_export_dictionary"
+            app:summary="@string/pref_export_dictionary_summary"
+            app:icon="@drawable/ic_export"
+            app:dependency="user_dictionary_enabled" />
     </PreferenceCategory>
 
     <!-- TÍTULO 4: VALORES POR DEFECTO -->

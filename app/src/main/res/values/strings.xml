@@ -17,6 +17,7 @@
     <string name="about_credits">Credits:\n• SVOX Pico TTS: Original native acoustic synthesis core.\n• Developed and optimized by Rodrigo Condori Flores (RME Systems).</string>
     <string name="btn_telegram">Telegram (@rmesystems)</string>
     <string name="btn_github">GitHub Repository</string>
+    <string name="btn_privacy_policy">Privacy Policy</string>
     <string name="btn_accept">OK</string>
 
     <!-- Settings Categories -->
@@ -59,6 +60,15 @@
     <string name="pref_user_dictionary_enabled_summary">Apply custom word replacement and pronunciation rules</string>
     <string name="pref_manage_dictionary">Manage dictionary rules</string>
     <string name="pref_manage_dictionary_summary">Add, edit or delete custom word replacements</string>
+    <string name="pref_import_dictionary">Import dictionary</string>
+    <string name="pref_import_dictionary_summary">Import replacement rules from a JSON or text file</string>
+    <string name="pref_export_dictionary">Export dictionary</string>
+    <string name="pref_export_dictionary_summary">Export current rules to a JSON file</string>
+    <string name="toast_export_success">Dictionary exported successfully</string>
+    <string name="toast_export_error">Error exporting dictionary: %s</string>
+    <string name="toast_import_success">Imported %d rules successfully</string>
+    <string name="toast_import_empty">No valid rules found in the selected file</string>
+    <string name="toast_import_error">Error importing dictionary: %s</string>
 
     <!-- Default Values -->
     <string name="pref_reset_defaults">Reset all parameters</string>
@@ -69,9 +79,11 @@
 
     <!-- Dictionary Dialogs -->
     <string name="dialog_add_word">Add dictionary rule</string>
+    <string name="dialog_edit_word">Edit dictionary rule</string>
     <string name="hint_original_word">Original word</string>
     <string name="hint_replacement_word">Pronunciation / Replacement</string>
     <string name="btn_add">Add</string>
+    <string name="btn_save">Save</string>
     <string name="btn_delete">Delete</string>
     <string name="empty_dictionary">No words added to the dictionary yet.</string>
 

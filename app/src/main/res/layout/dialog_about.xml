@@ -66,6 +66,14 @@
             android:layout_marginTop="8dp" />
 
         <Button
+            android:id="@+id/btnPrivacyPolicy"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_privacy_policy"
+            android:layout_marginTop="8dp" />
+
+        <Button
             android:id="@+id/btnAccept"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="match_parent"

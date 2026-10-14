@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pico TTS Pro - Privacy Policy / Política de Privacidad</title>
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --card-bg: #161b22;
+            --border-color: #30363d;
+            --text-primary: #e6edf3;
+            --text-secondary: #8b949e;
+            --accent-cyan: #38bdf8;
+            --accent-blue: #2563eb;
+            --badge-bg: rgba(56, 189, 248, 0.1);
+            --badge-border: rgba(56, 189, 248, 0.25);
+            --badge-text: #7dd3fc;
+        }
+
+        @media (prefers-color-scheme: light) {
+            :root {
+                --bg-color: #f8fafc;
+                --card-bg: #ffffff;
+                --border-color: #e2e8f0;
+                --text-primary: #0f172a;
+                --text-secondary: #475569;
+                --accent-cyan: #0284c7;
+                --accent-blue: #1d4ed8;
+                --badge-bg: rgba(2, 132, 199, 0.08);
+                --badge-border: rgba(2, 132, 199, 0.2);
+                --badge-text: #0369a1;
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.65;
+            padding: 24px 16px;
+        }
+
+        .container {
+            max-width: 780px;
+            margin: 0 auto;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 32px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-icon {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 20px;
+            box-shadow: 0 4px 12px rgba(56, 189, 248, 0.25);
+        }
+
+        .brand-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .brand-subtitle {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+        }
+
+        /* Language Switcher Button */
+        .lang-switch {
+            display: inline-flex;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 9999px;
+            padding: 4px;
+            gap: 4px;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            padding: 6px 14px;
+            border-radius: 9999px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .lang-btn:hover {
+            color: var(--text-primary);
+        }
+
+        .lang-btn.active {
+            background: var(--accent-cyan);
+            color: #ffffff;
+            box-shadow: 0 2px 6px rgba(56, 189, 248, 0.3);
+        }
+
+        /* Badges list */
+        .badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 28px;
+        }
+
+        .badge {
+            background: var(--badge-bg);
+            border: 1px solid var(--badge-border);
+            color: var(--badge-text);
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        h1 {
+            font-size: 1.85rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .updated-date {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-top: 24px;
+            margin-bottom: 10px;
+            color: var(--accent-cyan);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        p {
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        ul {
+            margin-left: 20px;
+            margin-bottom: 16px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+        }
+
+        li strong {
+            color: var(--text-primary);
+        }
+
+        .disclaimer-box {
+            background: rgba(234, 179, 8, 0.08);
+            border: 1px solid rgba(234, 179, 8, 0.25);
+            color: var(--text-primary);
+            padding: 16px;
+            border-radius: 8px;
+            font-size: 0.88rem;
+            margin: 20px 0;
+        }
+
+        footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+        }
+
+        a {
+            color: var(--accent-cyan);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .lang-content {
+            display: none;
+        }
+
+        .lang-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <div class="brand">
+            <div class="brand-icon">P</div>
+            <div>
+                <div class="brand-title">Pico TTS Pro</div>
+                <div class="brand-subtitle">RME Systems</div>
+            </div>
+        </div>
+
+        <!-- Language Switcher -->
+        <div class="lang-switch" role="group" aria-label="Language selector">
+            <button class="lang-btn active" id="btn-es" onclick="switchLanguage('es')">Español</button>
+            <button class="lang-btn" id="btn-en" onclick="switchLanguage('en')">English</button>
+        </div>
+    </header>
+
+    <!-- SPANISH CONTENT -->
+    <div id="content-es" class="lang-content active">
+        <h1>Política de Privacidad</h1>
+        <div class="updated-date">Última actualización: 14 de octubre de 2026</div>
+
+        <div class="badges">
+            <span class="badge">🔒 100% Sin Conexión (Offline)</span>
+            <span class="badge">🚫 Cero Recopilación de Datos</span>
+            <span class="badge">🛡️ Sin Publicidad ni Rastreo</span>
+            <span class="badge">⚙️ Procesamiento en el Dispositivo</span>
+        </div>
+
+        <div class="card">
+            <p><strong>Pico TTS Pro</strong> es un motor sintetizador de texto a voz (TTS) independiente, desarrollado por <strong>Rodrigo Condori Flores (RME Systems)</strong>. Diseñado como una herramienta enfocada en la accesibilidad y el rendimiento, la privacidad de los usuarios es nuestra máxima prioridad.</p>
+
+            <h2>1. Cero Recopilación de Datos</h2>
+            <p>Pico TTS Pro <strong>NO</strong> recopila, almacena, transmite ni comparte ningún tipo de información personal, técnica ni de uso:</p>
+            <ul>
+                <li><strong>Sin datos personales:</strong> No recopilamos nombres, correos electrónicos, números telefónicos, ubicación geográfica ni identificadores de cuenta.</li>
+                <li><strong>Sin analíticas ni telemetría:</strong> La aplicación no incluye ningún kit de desarrollo (SDK) de seguimiento o métricas (como Google Analytics, Firebase o Crashlytics).</li>
+                <li><strong>Sin anuncios:</strong> La aplicación no contiene publicidad ni identificadores publicitarios.</li>
+                <li><strong>Sin acceso a red:</strong> La aplicación funciona de manera completamente local y no requiere ni solicita permisos de acceso a Internet en Android.</li>
+            </ul>
+
+            <h2>2. Procesamiento de Voz Totalmente Local</h2>
+            <p>Toda la síntesis acústica, la lectura de emoticonos y emojis Unicode, el procesamiento numérico y las sustituciones del diccionario se ejecutan <strong>exclusivamente en el procesador (CPU) de tu propio dispositivo</strong>. Ningún texto leído, portapapeles o audio generado sale jamás de tu teléfono.</p>
+
+            <h2>3. Almacenamiento Local y Diccionarios</h2>
+            <p>Las reglas y pronunciaciones personalizadas se guardan exclusivamente en el almacenamiento privado local de la aplicación en tu dispositivo (<code>user_dictionary.json</code>).</p>
+            <p>Al importar o exportar copias del diccionario, la selección de archivos se realiza a través del marco nativo seguro de Android (<em>Storage Access Framework</em>), garantizando que solo tú tienes acceso a tus archivos.</p>
+
+            <div class="disclaimer-box">
+                <strong>Aviso Legal y Licencia:</strong><br>
+                Pico TTS Pro es un software independiente desarrollado por RME Systems basado en el núcleo acústico de código abierto SVOX Pico (licenciado bajo la <strong>Apache License, Version 2.0</strong>). Esta aplicación no está afiliada, respaldada, patrocinada ni asociada formalmente con Google LLC ni con SVOX AG. Android es una marca comercial de Google LLC.
+            </div>
+
+            <h2>4. Contacto del Desarrollador</h2>
+            <p>Si tienes cualquier duda, sugerencia o consulta sobre esta política o la aplicación, puedes comunicarte directamente con el desarrollador:</p>
+            <ul>
+                <li><strong>Desarrollador:</strong> Rodrigo Condori Flores (RME Systems)</li>
+                <li><strong>Telegram de contacto:</strong> <a href="https://t.me/rmesystems" target="_blank" rel="noopener">@rmesystems</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ENGLISH CONTENT -->
+    <div id="content-en" class="lang-content">
+        <h1>Privacy Policy</h1>
+        <div class="updated-date">Last updated: October 14, 2026</div>
+
+        <div class="badges">
+            <span class="badge">🔒 100% Offline Engine</span>
+            <span class="badge">🚫 Zero Data Collection</span>
+            <span class="badge">🛡️ No Ads or Trackers</span>
+            <span class="badge">⚙️ On-Device Processing</span>
+        </div>
+
+        <div class="card">
+            <p><strong>Pico TTS Pro</strong> is an independent text-to-speech (TTS) synthesis engine developed by <strong>Rodrigo Condori Flores (RME Systems)</strong>. Designed as an accessibility-focused and high-performance utility, user privacy is our top priority.</p>
+
+            <h2>1. Zero Data Collection</h2>
+            <p>Pico TTS Pro does <strong>NOT</strong> collect, store, transmit, or share any personal, technical, or usage information:</p>
+            <ul>
+                <li><strong>No Personal Data:</strong> We do not collect names, email addresses, phone numbers, location data, or account identifiers.</li>
+                <li><strong>No Analytics or Telemetry:</strong> The application does not contain tracking, diagnostic, or metrics SDKs (such as Google Analytics, Firebase, or Crashlytics).</li>
+                <li><strong>No Ads:</strong> The application contains no advertising SDKs or advertising identifiers.</li>
+                <li><strong>No Network Access:</strong> The app operates entirely locally and does not request or require Android internet permissions.</li>
+            </ul>
+
+            <h2>2. 100% On-Device Speech Synthesis</h2>
+            <p>All acoustic synthesis, emoji processing, numerical formatting, and dictionary replacement rules run <strong>strictly on your device's local processor (CPU)</strong>. No spoken text, clipboard content, or synthesized audio is ever transmitted across any network or recorded to external servers.</p>
+
+            <h2>3. Local Storage and User Dictionaries</h2>
+            <p>Custom pronunciation rules are stored solely within the app's private sandbox storage on your device (<code>user_dictionary.json</code>).</p>
+            <p>When exporting or importing dictionary backup files, operations are managed through Android's secure <em>Storage Access Framework (SAF)</em>, ensuring you retain full, explicit control over your files.</p>
+
+            <div class="disclaimer-box">
+                <strong>Legal Disclaimer & Licensing:</strong><br>
+                Pico TTS Pro is an independent application developed by RME Systems based on the open-source SVOX Pico acoustic core (licensed under the <strong>Apache License, Version 2.0</strong>). This app is not affiliated with, endorsed by, sponsored by, or formally associated with Google LLC or SVOX AG. Android is a trademark of Google LLC.
+            </div>
+
+            <h2>4. Developer Contact</h2>
+            <p>If you have any questions, suggestions, or support inquiries regarding this privacy policy or the application, please reach out directly:</p>
+            <ul>
+                <li><strong>Developer:</strong> Rodrigo Condori Flores (RME Systems)</li>
+                <li><strong>Telegram Contact:</strong> <a href="https://t.me/rmesystems" target="_blank" rel="noopener">@rmesystems</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2026 Pico TTS Pro &bull; Developed by Rodrigo Condori Flores (RME Systems)
+    </footer>
+</div>
+
+<script>
+    function switchLanguage(lang) {
+        const esContent = document.getElementById('content-es');
+        const enContent = document.getElementById('content-en');
+        const btnEs = document.getElementById('btn-es');
+        const btnEn = document.getElementById('btn-en');
+
+        if (lang === 'en') {
+            esContent.classList.remove('active');
+            enContent.classList.add('active');
+            btnEs.classList.remove('active');
+            btnEn.classList.add('active');
+            document.documentElement.lang = 'en';
+        } else {
+            enContent.classList.remove('active');
+            esContent.classList.add('active');
+            btnEn.classList.remove('active');
+            btnEs.classList.add('active');
+            document.documentElement.lang = 'es';
+        }
+
+        try {
+            localStorage.setItem('pico_tts_privacy_lang', lang);
+        } catch(e) {}
+    }
+
+    // Auto-detect browser language or load saved preference
+    (function initLanguage() {
+        let saved = null;
+        try {
+            saved = localStorage.getItem('pico_tts_privacy_lang');
+        } catch(e) {}
+
+        if (saved) {
+            switchLanguage(saved);
+        } else {
+            const browserLang = (navigator.language || navigator.userLanguage || 'es').toLowerCase();
+            if (browserLang.startsWith('en')) {
+                switchLanguage('en');
+            } else {
+                switchLanguage('es');
+            }
+        }
+    })();
+</script>
+
+</body>
+</html>
